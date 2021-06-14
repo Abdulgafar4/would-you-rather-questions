@@ -24,7 +24,7 @@ let users = {
   johndoe: {
     id: 'johndoe',
     name: 'John Doe',
-    avatarURL:"https://www.freepik.com/premium-photo/image-human-brain_5013322.htm",
+    avatarURL:"https://tylermcginnis.com/would-you-rather/dan.jpg",
     answers: {
       "xj352vofupe1dqz9emx13r": 'optionOne',
       "vthrdm985a262al8qx3do": 'optionTwo',
@@ -126,10 +126,11 @@ export function _getUsers () {
 }
 
 export function _getQuestions () {
-  return new Promise((res, rej) => {
+  return new Promise((res, rej) => {  
     setTimeout(() => res({...questions}), 1000)
   })
 }
+
 
 function formatQuestion ({ optionOneText, optionTwoText, author }) {
   return {
