@@ -4,17 +4,19 @@ import LoadingBar from "react-redux-loading";
 import Dashboard from "./Dashboard";
 import Login from "./Login";
 import Menu from "./Menu";
-import NotFound from "./NotFound"
-import "./App.css";
+import NotFound from "./NotFound";
 import { connect } from "react-redux";
 import NewQuestion from "./NewQuestion";
 import Leaders from "./Leaders";
 import ViewQuestion from "./ViewQuestion";
 
 const App = (props) => {
-  if (!props.authedUser) {
+  const { authedUser } = props;
+
+  if (!authedUser) {
     return (
       <Router>
+        <LoadingBar />
         <Switch>
           <Route path="/" component={Login} />
         </Switch>
@@ -24,18 +26,20 @@ const App = (props) => {
   return (
     <Router>
       <Fragment>
-        <LoadingBar />
+      <LoadingBar />
         <Menu />
         <Switch>
-          <Route path="/" exact render={() => {
-            return (
-              <Dashboard />
-            )
-          }}/>
-          <Route path="/leader" component={Leaders} /> 
-          <Route path="/add" component={NewQuestion} /> 
-          <Route path="/404" component={NotFound} />
+          <Route
+            path="/"
+            exact
+            render={() => {
+              return <Dashboard />;
+            }}
+          />
+          <Route path="/leader" component={Leaders} />
+          <Route path="/add" component={NewQuestion} />
           <Route path="/questions/:id" component={ViewQuestion} />
+          <Route path="/404" component={NotFound} />
         </Switch>
       </Fragment>
     </Router>

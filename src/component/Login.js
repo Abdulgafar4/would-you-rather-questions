@@ -1,7 +1,6 @@
 import { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { Card } from "react-bootstrap";
 import { handleReceiveUsers } from "../actions/users";
 import { handleReceiveQuestions } from "../actions/questions";
 import { setAuthedUser, logout } from "../actions/authedUser";
@@ -46,9 +45,8 @@ class Login extends Component {
     }
 
     return (
-      <div className="d-flex justify-content-center align-items-center login">
-        <Card className="card">
-          <Card.Body>
+      <div className="container card" style={{ marginTop: "30px" }} >
+          <div className="card-body" >
             <h1 className="mb-4">Login</h1>
             <form>
               <Users getAuthedUser={this.getAuthedUser} />
@@ -60,8 +58,7 @@ class Login extends Component {
                 Sign In
               </button>
             </form>
-          </Card.Body>
-        </Card>
+          </div>
       </div>
     );
   }

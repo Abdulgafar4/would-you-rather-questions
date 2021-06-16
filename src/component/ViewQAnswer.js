@@ -1,16 +1,15 @@
 import React from 'react'
-import { Card } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import ViewQResult from './ViewQResult';
 
 function ViewQAnswer(props) {
-    const { author, paramsId } = props;
+    const { author, qid } = props;
 
 
     return (
-        <Card>
-            <Card.Header as="h6">Asked by {author?.name}</Card.Header>
-            <Card.Body className="d-flex">
+        <div className="card">
+            <div className="card-header" as="h5">Asked by {author?.name}</div>
+            <div className="card-body d-flex">
                 <div>
                     <img src={`${author?.avatarURL}`} width="100" height="100" alt={author?.name} />
                 </div>
@@ -20,25 +19,26 @@ function ViewQAnswer(props) {
                         <ul>
                             <li className="mb-3">
                                 <ViewQResult
-                                    paramsId={paramsId}
-                                    answer={props.optionOne} />
+                                    qid={qid}
+                                    ans={"optionOne"} />
                             </li>
                             <li>
                                 <ViewQResult
-                                    paramsId={paramsId}
-                                    answer={props.optionTwo} />
+                                    qid={qid}
+                                    ans={"optionTwo"} />
                             </li>
                         </ul>
                     </div>
                 </div>
-            </Card.Body>
-        </Card>
+            </div>
+        </div>
     )
 }
 
-function mapStateToProps({ users, questions }, { paramsId }) {
+function mapStateToProps({ users, questions }, { qid }) {
+    const question = questions[qid]
     return {
-        author: users[questions[paramsId]?.author]
+        author: users[question?.author]
     }
 }
 

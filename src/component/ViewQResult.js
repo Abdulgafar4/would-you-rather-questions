@@ -1,41 +1,41 @@
-import { Card, ProgressBar } from 'react-bootstrap';
+import {  ProgressBar } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
 function ViewQResult(props) {
     const {
         qAnswer,
         aText,
-        answer,
-        votes,
-        totalVotes
+        ans,
+        aVotes,
+        tVotes
     } = props;
-    const isAnswer = qAnswer === answer;
-    const percent = (votes / totalVotes * 100).toFixed(1);
+    const isAnswer = qAnswer === ans;
+    const percent = (aVotes / tVotes * 100).toFixed(1);
 
     return (
-        <Card
+        <div
             bg={isAnswer ? "success" : "light"}
             text={isAnswer ? "white" : "dark"}
-            className="poll-result">
-            <Card.Body>
+            className="card">
+            <div className="card-body">
                 {isAnswer
                     ? <span className="vote">Your Vote</span>
                     : null}
                 <p>{`Would you rather ${aText}`}</p>
                 <ProgressBar now={percent} label={`${percent}%`} />
-                <span>{`${votes} out of ${totalVotes}`}</span>
-            </Card.Body>
-        </Card>
+                <span>{`${aVotes} out of ${tVotes}`}</span>
+            </div>
+        </div>
     )
 }
 
-function mapStateToProps({ users, questions, authedUser }, { paramsId, answer }) {
-    const question = questions[paramsId];
+function mapStateToProps({ users, questions, authedUser }, { qid, ans }) {
+    const question = questions[qid];
     return {
         qAnswer: users[authedUser]?.answers[question?.id],
-        aText: question ? question[answer].text : null,
-        votes: question ? question[answer].votes.length : 0,
-        totalVotes: question ? question.optionOne.votes.length + question.optionTwo.votes.length : 0
+        aText: question ? question[ans].text : null,
+        aVotes: question ? question[ans].votes.length : 0,
+        tVotes: question ? question.optionOne.votes.length + question.optionTwo.votes.length : 0
     }
 }
 

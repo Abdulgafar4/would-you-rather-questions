@@ -16,7 +16,7 @@ function Menu (props){
     }
 
     return (
-        <Navbar bg="light" expand="lg" className="mb-5 header">
+        <Navbar bg="light" expand="lg" className="mb-5 header" style={{marginTop: "3px"}}>
             <NavLink className="navbar-brand" to="/">Would You Rather</NavLink>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
@@ -29,7 +29,7 @@ function Menu (props){
                     </li>
                 </Nav>
                 <div>
-                <span>Welcome! {props.authedUser?.name}</span>
+                <span>Hi!, it's  {props.authedUser?.name}</span>
                     <img
                         src={`${props.authedUser?.avatarURL}`}
                         width="45"

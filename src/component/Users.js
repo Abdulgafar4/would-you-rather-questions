@@ -1,15 +1,15 @@
-import { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 
-class Users extends Component {
-  usersChange = (e) => {
-    this.props.getAuthedUser(e.target.selectedOptions[0].id);
-  };
+  function Users (props) {
 
-  render() {
-    const { users } = this.props;
+    const { users, getAuthedUser } = props;
+
+    const usersChange = (e) => {
+      getAuthedUser(e.target.selectedOptions[0].id)
+    }
     return (
-      <select className="form-control mb-3" onChange={this.usersChange}>
+      <select className="form-control mb-3" onChange={usersChange}>
         <option value="">Choose User</option>
         {Object.keys(users).map((userId) => (
           <option id={userId} key={userId}>
@@ -19,7 +19,6 @@ class Users extends Component {
       </select>
     );
   }
-}
 
 function mapStateToProps({ users }) {
   return {

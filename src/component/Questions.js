@@ -4,21 +4,22 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 function Questions(props) {
+  const { question, author } = props
   return (
-    <Card >
-      <Link to={`/questions/${props.question}`} className="d-flex">
+    <div className="card" >
+      <Link to={`/questions/${question.id}`} className="d-flex">
         <Card.Img
           variant="left"
-          src={`${props.author.avatarURL}`}
+          src={`${author.avatarURL}`}
           width="100"
           height="120"
         />
-        <Card.Body>
-          <p>{props.author.name}</p>
-          <p>...{props.question.optionTwo.text}</p>
-        </Card.Body>
+        <div className="card-body">
+          <p>{author.name}</p>
+          <p>...{question.optionOne.text}</p>
+        </div>
       </Link>
-    </Card>
+    </div>
   );
 }
 

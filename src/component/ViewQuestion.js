@@ -1,34 +1,33 @@
-import { Container } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 import ViewQAnswer from './ViewQAnswer';
 import ViewQuestionDetail from './ViewQuestionDetail';
 
-function ViewQuestion (props){
-   const { paramsId, questions, users, authedUser } = props  
+function ViewQuestion (props) {
+   const { qid, isAnswer, isExist, isQuesstions } = props  
 
-    if (Object.keys(questions).length && !questions[paramsId]) {
-        return <Redirect to="/404" />
+    if (isQuesstions && !isExist) {
+        return <Redirect to="/404"/>
     }
 
     return (
-        <Container>
-            {Object.keys(questions).length
-                ? users[authedUser]?.answers[paramsId] === undefined
-                    ? <ViewQuestionDetail paramsId={paramsId} />
-                    : <ViewQAnswer paramsId={paramsId} />
+        <div className="container">
+            {isQuesstions
+                ? isAnswer 
+                    ? <ViewQuestionDetail qid={qid} />
+                    : <ViewQAnswer qid={qid} />
                 : <p>Loading...</p>}
-        </Container>
+        </div >
     )
 }
 
-function mapStateToProps({ authedUser, users, questions }, props) {
-    const paramsId = props.match.params.id;
+function mapStateToProps({ authedUser, users, questions }, props ) {
+    const qid = props.match.params.id;
     return {
-        authedUser,
-        questions,
-        paramsId,
-        users
+        isAnswer: users[authedUser]?.answers[qid] === undefined,
+        isQuesstions: Object.keys(questions).length,
+        isExist: questions[qid],
+        qid
 
     }
 }

@@ -1,10 +1,9 @@
-import { Container } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import BoardCard from './BoardCard';
 
 function Leader (props) {
     return (
-        <Container className="col-sm-6">
+        <div className="container col-sm-6">
             <ul>
                 {props.leader.map(item => (
                     <li key={item} className="mb-3">
@@ -12,7 +11,7 @@ function Leader (props) {
                     </li>
                 ))}
             </ul>
-        </Container>
+        </div>
     )
 }
 

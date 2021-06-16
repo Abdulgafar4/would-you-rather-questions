@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { handleSaveQuestion } from '../actions/questions';
-import { Container } from 'react-bootstrap';
 
 function NewQuestion(props) {
 
@@ -26,7 +25,7 @@ function NewQuestion(props) {
     }
 
     return (
-        <Container className="card w-50  border-secondary">
+        <div className="container card w-50  border-secondary">
         <form>
             <div className="text-center mb-3 bg-transparent">Create a new question</div>
                 <div>Would you rather?</div>
@@ -48,7 +47,7 @@ function NewQuestion(props) {
                     <button className="btn btn-dark mb-3">Sumbit</button>
                 </Link>
         </form>
-        </Container>
+        </div>
     )
 }
 
