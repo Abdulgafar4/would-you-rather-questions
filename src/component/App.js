@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router,  Route, Switch } from "react-router-dom";
 import LoadingBar from "react-redux-loading";
 import Dashboard from "./Dashboard";
 import Login from "./Login";
@@ -9,14 +9,17 @@ import { connect } from "react-redux";
 import NewQuestion from "./NewQuestion";
 import Leaders from "./Leaders";
 import ViewQuestion from "./ViewQuestion";
+import Header from "./Header";
 
 const App = (props) => {
   const { authedUser } = props;
 
+
   if (!authedUser) {
     return (
       <Router>
-        <LoadingBar />
+        <LoadingBar style={{ zIndex: 1000 }} />
+        <Header />
         <Switch>
           <Route path="/" component={Login} />
         </Switch>

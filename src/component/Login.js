@@ -38,7 +38,7 @@ class Login extends Component {
           to={
             this.props.location.state
               ? this.props.location.state.prevLoc
-              : "/dashboard"
+              : "/"
           }
         />
       );
